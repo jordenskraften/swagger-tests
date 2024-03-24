@@ -1,0 +1,56 @@
+definitions:
+  main.Response:
+    properties:
+      message:
+        type: string
+    type: object
+  main.TimeResponse:
+    properties:
+      time:
+        description: Время в формате RFC3339
+        type: string
+    type: object
+host: localhost:1323
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server Petstore server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /secure:
+    get:
+      description: Защищенный эндпоинт, требующий аутентификации
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Это защищенный эндпоинт
+          schema:
+            $ref: '#/definitions/main.Response'
+      security:
+      - Bearer: []
+      summary: Защищенный эндпоинт
+  /time:
+    get:
+      description: Получить текущее время в формате JSON
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Текущее время в формате JSON
+          schema:
+            $ref: '#/definitions/main.TimeResponse'
+      summary: Получить текущее время
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

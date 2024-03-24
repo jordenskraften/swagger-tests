@@ -1,0 +1,86 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server Petstore server.",
+        "title": "Swagger Example API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:1323",
+    "paths": {
+        "/secure": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Защищенный эндпоинт, требующий аутентификации",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Защищенный эндпоинт",
+                "responses": {
+                    "200": {
+                        "description": "Это защищенный эндпоинт",
+                        "schema": {
+                            "$ref": "#/definitions/main.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/time": {
+            "get": {
+                "description": "Получить текущее время в формате JSON",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Получить текущее время",
+                "responses": {
+                    "200": {
+                        "description": "Текущее время в формате JSON",
+                        "schema": {
+                            "$ref": "#/definitions/main.TimeResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Response": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.TimeResponse": {
+            "type": "object",
+            "properties": {
+                "time": {
+                    "description": "Время в формате RFC3339",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
